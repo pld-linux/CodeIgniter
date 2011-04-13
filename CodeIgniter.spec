@@ -3,12 +3,13 @@
 Summary:	A powerful PHP framework with a very small footprint
 Name:		CodeIgniter
 Version:	2.0.2
-Release:	0.5
+Release:	0.7
 License:	other
 Group:		Development/Languages/PHP
 Source0:	http://www.codeigniter.com/download_files/reactor/%{name}_%{version}.zip
 # Source0-md5:	e75bab8cf27d2fb2483c5bb61b85a524
 Source1:	INSTALL-PLD.txt
+Source2:	codeigniter-install
 URL:		http://www.kohanaframework.org/
 BuildRequires:	rpm-php-pearprov >= 4.3
 BuildRequires:	rpmbuild(macros) >= 1.461
@@ -40,7 +41,7 @@ frameworks.
 %prep
 %setup -q -n %{name}_%{version}
 %{__sed} -i 's,\$application_folder.*=.*,$application_folder = "PLEASE SET TO CORRECT PATH";,' index.php
-%{__sed} -i '59 s,\$system_path.*=.*,$system_path = "/usr/share/CodeIgniter"\;, ' index.php
+%{__sed} -i '59 s,\$system_path.*=.*,$system_path = "%{_datadir}/CodeIgniter/system"\;, ' index.php
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -51,6 +52,9 @@ install -d $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 cp -r index.php application system $RPM_BUILD_ROOT%{_appdir}
 cp -r user_guide/* $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+
+install -d $RPM_BUILD_ROOT%{_bindir}
+install %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -63,4 +67,5 @@ EOF
 %files
 %defattr(644,root,root,755)
 %doc %{_docdir}/%{name}-%{version}
+%attr(755,root,root) %{_bindir}/codeigniter-install
 %{_appdir}
