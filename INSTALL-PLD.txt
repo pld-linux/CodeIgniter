@@ -1,0 +1,28 @@
+This file describes how to install CodeIgniter in PLD.
+
+The steps are simple (the package CodeIgniter is installed yet).
+1. Create a directory in your ~/public_html, e.g. ci (optional).
+2. Copy the /usr/share/CodeIgniter/index.php to the directory (created in step 1).
+3. Edit the copied index.php: set the correct path in $application_folder (line 75)
+   without trailing slash (e.g. "/home/users/uzsolt/programs/codeigniter").
+   This directory can be outside of ~/public_html.
+   Please don't change $system_path, it points to system-installed CodeIgniter.
+4. Create the $application_folder, and its subdirectories:
+	   * config
+	   * controllers
+	   * models
+	   * views
+   And optional (but suggested!) directories:
+	   * core
+	   * errors
+	   * helpers
+	   * hooks
+	   * language
+	   * libraries
+	   * logs
+5. You can populate this directories from /usr/share/CodeIgniter/application (optional).
+6. Edit config/*.php (autoload.php, config.php, database.php or whatever do you need).
+7. You can access your programs via http://localhost/~USERNAME/ci/index.php
+   (`ci' is created in step 1.)
+8. Happy programming :)
+
