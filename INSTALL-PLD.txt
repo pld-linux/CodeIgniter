@@ -26,3 +26,5 @@ The steps are simple (the package CodeIgniter is installed yet).
    (`ci' is created in step 1.)
 8. Happy programming :)
 
+Or you can use `codeigniter-install' script instead of step 1-7 :)
+
