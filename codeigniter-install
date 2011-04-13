@@ -28,7 +28,7 @@ install -d $APPDIR || exit 1
 echo "Creating directories to app directory"
 for dir in config controllers core errors helpers hooks language libraries logs models third_party; do
 	install -d $APPDIR/$dir || exit 1
-	cp -r $CI_DIR/application/$dir/* $APPDIR/$dir || exit 1
+	cp -r -n $CI_DIR/application/$dir/* $APPDIR/$dir || exit 1
 done
 
 echo Installation done.
