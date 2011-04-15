@@ -10,7 +10,7 @@ Source0:	http://www.codeigniter.com/download_files/reactor/%{name}_%{version}.zi
 # Source0-md5:	e75bab8cf27d2fb2483c5bb61b85a524
 Source1:	INSTALL-PLD.txt
 Source2:	codeigniter-install
-URL:		http://www.kohanaframework.org/
+URL:		http://codeigniter.com/
 BuildRequires:	rpm-php-pearprov >= 4.3
 BuildRequires:	rpmbuild(macros) >= 1.461
 BuildRequires:	sed >= 4.0
