@@ -3,7 +3,7 @@
 Summary:	A powerful PHP framework with a very small footprint
 Name:		CodeIgniter
 Version:	2.0.2
-Release:	0.7
+Release:	0.9
 License:	other
 Group:		Development/Languages/PHP
 Source0:	http://www.codeigniter.com/download_files/reactor/%{name}_%{version}.zip
@@ -38,6 +38,13 @@ real world of shared hosting accounts and clients with deadlines, and
 if you're tired of ponderously large and thoroughly undocumented
 frameworks.
 
+%package doc
+Summary:	CodeIgniter documentation
+Group:		Development/Languages/PHP
+
+%description doc
+CodeIgniter documentation.
+
 %prep
 %setup -q -n %{name}_%{version}
 %{__sed} -i 's,\$application_folder.*=.*,$application_folder = "PLEASE SET TO CORRECT PATH";,' index.php
@@ -56,6 +63,10 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 install -d $RPM_BUILD_ROOT%{_bindir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}
 
+find $RPM_BUILD_ROOT%{_datadir}/%{name} -name index.html -delete
+
+rm -rf $RPM_BUILD_ROOT%{_appdir}/application/{cache,core,helpers,hooks,libraries}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -66,6 +77,42 @@ EOF
 
 %files
 %defattr(644,root,root,755)
-%doc %{_docdir}/%{name}-%{version}
 %attr(755,root,root) %{_bindir}/codeigniter-install
-%{_appdir}
+
+%dir %{_appdir}
+%dir %{_appdir}/application
+%dir %{_appdir}/application/config
+%dir %{_appdir}/application/controllers
+%dir %{_appdir}/application/errors
+%dir %{_appdir}/application/language
+%dir %{_appdir}/application/views
+%dir %{_appdir}/system
+%dir %{_appdir}/system/core
+%dir %{_appdir}/system/database
+%dir %{_appdir}/system/database/drivers
+%dir %{_appdir}/system/fonts
+%dir %{_appdir}/system/helpers
+%dir %{_appdir}/system/language
+%dir %{_appdir}/system/libraries
+
+%{_appdir}/index.php
+%{_appdir}/application/.htaccess
+%{_appdir}/system/.htaccess
+
+%{_appdir}/application/config/*
+%{_appdir}/application/controllers/*
+%{_appdir}/application/errors/*
+%{_appdir}/application/language/*
+%{_appdir}/application/views/*
+
+%{_appdir}/system/core/*
+%{_appdir}/system/database/DB*.php
+%{_appdir}/system/database/drivers/*
+%{_appdir}/system/fonts/*
+%{_appdir}/system/helpers/*
+%{_appdir}/system/language/*
+%{_appdir}/system/libraries/*
+
+%files doc
+%defattr(644,root,root,755)
+%doc %{_docdir}/%{name}-%{version}
