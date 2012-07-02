@@ -2,12 +2,12 @@
 %include	/usr/lib/rpm/macros.php
 Summary:	A powerful PHP framework with a very small footprint
 Name:		CodeIgniter
-Version:	2.1.0
+Version:	2.1.2
 Release:	0.9
 License:	other
 Group:		Development/Languages/PHP
 Source0:	http://www.codeigniter.com/download_files/reactor/%{name}_%{version}.zip
-# Source0-md5:	42aff049f8b43390a88d322e94dc69b8
+# Source0-md5:	c7a2980dff2774c97bd38bfbf450d8d5
 Source1:	INSTALL-PLD.txt
 Source2:	codeigniter-install
 URL:		http://codeigniter.com/
