@@ -15,16 +15,16 @@ BuildRequires:	rpm-php-pearprov >= 4.3
 BuildRequires:	rpmbuild(macros) >= 1.461
 BuildRequires:	sed >= 4.0
 BuildRequires:	unzip
-Requires:	php-common >= 4:%{php_min_version}
-Requires:	php-ctype
-Requires:	php-date
-Requires:	php-hash
-Requires:	php-mbstring
-Requires:	php-mysql
-Requires:	php-pcre
-Requires:	php-session
-Requires:	php-simplexml
-Requires:	php-spl
+Requires:	php(core) >= %{php_min_version}
+Requires:	php(ctype)
+Requires:	php(date)
+Requires:	php(hash)
+Requires:	php(mbstring)
+Requires:	php(mysql)
+Requires:	php(pcre)
+Requires:	php(session)
+Requires:	php(simplexml)
+Requires:	php(spl)
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -52,16 +52,15 @@ CodeIgniter documentation.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT%{_appdir}
-install -d $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
-
 cp -r index.php application system $RPM_BUILD_ROOT%{_appdir}
 cp -r user_guide/* $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
-install %{SOURCE1} $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+
+install -d $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 
 install -d $RPM_BUILD_ROOT%{_bindir}
-install %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}
+install -p %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}
 
 find $RPM_BUILD_ROOT%{_datadir}/%{name} -name index.html -delete
 
