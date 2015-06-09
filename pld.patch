@@ -1,0 +1,21 @@
+diff -ur -x .svn -x .git -x .bzr -x CVS CodeIgniter_2.1.2/index.php CodeIgniter_2.1.2.x/index.php
+--- CodeIgniter_2.1.2/index.php	2012-06-30 00:22:35.000000000 +0300
++++ CodeIgniter_2.1.2.x/index.php	2015-06-09 15:44:16.727178586 +0300
+@@ -56,7 +56,7 @@
+  * as this file.
+  *
+  */
+-	$system_path = 'system';
++	$system_path = "/usr/share/CodeIgniter/system";
+ 
+ /*
+  *---------------------------------------------------------------
+@@ -72,7 +72,7 @@
+  * NO TRAILING SLASH!
+  *
+  */
+-	$application_folder = 'application';
++	$application_folder = "PLEASE SET TO CORRECT PATH";
+ 
+ /*
+  * --------------------------------------------------------------------

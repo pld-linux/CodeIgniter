@@ -10,6 +10,7 @@ Source0:	http://www.codeigniter.com/download_files/reactor/%{name}_%{version}.zi
 # Source0-md5:	c7a2980dff2774c97bd38bfbf450d8d5
 Source1:	INSTALL-PLD.txt
 Source2:	codeigniter-install
+Patch0:		pld.patch
 URL:		http://codeigniter.com/
 BuildRequires:	rpm-php-pearprov >= 4.3
 BuildRequires:	rpmbuild(macros) >= 1.461
@@ -47,8 +48,7 @@ CodeIgniter documentation.
 
 %prep
 %setup -q -n %{name}_%{version}
-%{__sed} -i 's,\$application_folder.*=.*,$application_folder = "PLEASE SET TO CORRECT PATH";,' index.php
-%{__sed} -i '59 s,\$system_path.*=.*,$system_path = "%{_datadir}/CodeIgniter/system"\;, ' index.php
+%patch0 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
