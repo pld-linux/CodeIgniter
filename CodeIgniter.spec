@@ -2,12 +2,12 @@
 %include	/usr/lib/rpm/macros.php
 Summary:	A powerful PHP framework with a very small footprint
 Name:		CodeIgniter
-Version:	2.1.2
-Release:	0.9
+Version:	2.2.2
+Release:	0.1
 License:	other
 Group:		Development/Languages/PHP
-Source0:	http://www.codeigniter.com/download_files/reactor/%{name}_%{version}.zip
-# Source0-md5:	c7a2980dff2774c97bd38bfbf450d8d5
+Source0:	https://github.com/bcit-ci/CodeIgniter/archive/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	042f94f7c59b22111c7cf56673769c8b
 Source1:	INSTALL-PLD.txt
 Source2:	codeigniter-install
 Patch0:		pld.patch
@@ -47,24 +47,19 @@ Group:		Development/Languages/PHP
 CodeIgniter documentation.
 
 %prep
-%setup -q -n %{name}_%{version}
+%setup -q
 %patch0 -p1
+
+cp -p %{SOURCE1} user_guide
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_appdir}
+install -d $RPM_BUILD_ROOT{%{_appdir},%{_bindir}}
 cp -r index.php application system $RPM_BUILD_ROOT%{_appdir}
-cp -r user_guide/* $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
-
-install -d $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
-cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
-
-install -d $RPM_BUILD_ROOT%{_bindir}
 install -p %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}
 
-find $RPM_BUILD_ROOT%{_datadir}/%{name} -name index.html -delete
-
-rm -rf $RPM_BUILD_ROOT%{_appdir}/application/{cache,core,helpers,hooks,libraries}
+find $RPM_BUILD_ROOT%{_datadir}/%{name} -name index.html | xargs rm -v
+rm -r $RPM_BUILD_ROOT%{_appdir}/application/{cache,core,helpers,hooks,libraries}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -114,4 +109,4 @@ EOF
 
 %files doc
 %defattr(644,root,root,755)
-%doc %{_docdir}/%{name}-%{version}
+%doc user_guide/*
