@@ -1,5 +1,4 @@
 %define		php_min_version 5.2.4
-%include	/usr/lib/rpm/macros.php
 Summary:	A powerful PHP framework with a very small footprint
 Name:		CodeIgniter
 Version:	2.2.2
